@@ -1,8 +1,19 @@
+
 {
   "manifest_version": 3,
   "name": "FocusFlow",
   "version": "1.0.0",
   "description": "A smart productivity extension to help you focus.",
+
+  "permissions": [
+    "alarms",
+    "storage"
+  ],
+
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+
   "action": {
     "default_popup": "popup/popup.html",
     "default_title": "FocusFlow"

@@ -1,12 +1,16 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>FocusFlow</title>
+
     <link rel="stylesheet" href="popup.css">
 </head>
+
 <body>
 
     <div class="container">
@@ -16,15 +20,56 @@
             <p>Stay focused. Get things done.</p>
         </header>
 
-        <div class="timer-container">
-            <p class="timer-label">FOCUS SESSION</p>
-            <h2 id="timer">25:00</h2>
-            <p id="sessionStatus">Ready to focus?</p>
+        <!-- Session Modes -->
+        <div class="mode-controls">
+
+            <button class="mode-btn active" data-mode="focus">
+                Focus
+            </button>
+
+            <button class="mode-btn" data-mode="shortBreak">
+                Short Break
+            </button>
+
+            <button class="mode-btn" data-mode="longBreak">
+                Long Break
+            </button>
+
         </div>
 
+        <!-- Timer Section -->
+        <div class="timer-container">
+
+            <p class="timer-label" id="sessionModeLabel">
+                FOCUS SESSION
+            </p>
+
+            <h2 id="timer">25:00</h2>
+
+            <p id="sessionStatus">Ready to focus?</p>
+
+        </div>
+
+        <!-- Timer Controls -->
         <div class="controls">
-            <button id="startBtn">Start Focus</button>
-            <button id="resetBtn">Reset</button>
+
+            <button id="startBtn">
+                Start Focus
+            </button>
+
+            <button id="resetBtn">
+                Reset
+            </button>
+
+        </div>
+
+        <!-- Session Counter -->
+        <div class="session-counter">
+
+            <p>Completed Focus Sessions</p>
+
+            <h2 id="completedSessions">0</h2>
+
         </div>
 
     </div>
@@ -32,4 +77,5 @@
     <script src="popup.js"></script>
 
 </body>
+
 </html>

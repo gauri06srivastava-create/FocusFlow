@@ -155,3 +155,125 @@ button {
     font-size: 26px;
     color: #34d399;
 }
+
+/* Task Manager */
+.task-section {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #334155;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.task-header h2 {
+    font-size: 18px;
+    color: #a78bfa;
+}
+
+#taskCount {
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+/* Task Input */
+.task-input-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+#taskInput {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #334155;
+    border-radius: 9px;
+    background: #1e293b;
+    color: white;
+    font-size: 12px;
+    outline: none;
+}
+
+#taskInput:focus {
+    border-color: #a78bfa;
+}
+
+#taskPriority {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #334155;
+    border-radius: 9px;
+    background: #1e293b;
+    color: white;
+    cursor: pointer;
+}
+
+#addTaskBtn {
+    flex: 1;
+    padding: 10px;
+    background: #7c3aed;
+    color: white;
+    font-size: 12px;
+}
+
+#addTaskBtn:hover {
+    background: #6d28d9;
+}
+
+/* Task List */
+.task-list {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#emptyMessage {
+    text-align: center;
+    padding: 15px 5px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Individual Task Card */
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    color: #f8fafc;
+    font-size: 12px;
+    word-break: break-word;
+}
+
+/* Task Priority */
+.priority {
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 9px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.priority.high {
+    background: #7f1d1d;
+    color: #fca5a5;
+}
+
+.priority.medium {
+    background: #78350f;
+    color: #fcd34d;
+}
+
+.priority.low {
+    background: #064e3b;
+    color: #6ee7b7;
+}

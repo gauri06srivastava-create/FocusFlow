@@ -167,3 +167,142 @@ modeButtons.forEach(button => {
 
 // Initial load
 refreshTimer();
+
+// ================================
+// TASK MANAGER
+// ================================
+
+const taskInput = document.getElementById("taskInput");
+const taskPriority = document.getElementById("taskPriority");
+const addTaskBtn = document.getElementById("addTaskBtn");
+const taskList = document.getElementById("taskList");
+const taskCount = document.getElementById("taskCount");
+const emptyMessage = document.getElementById("emptyMessage");
+
+// Store tasks in an array
+let tasks = [];
+
+// Add a new task
+function addTask() {
+
+    const title = taskInput.value.trim();
+    const priority = taskPriority.value;
+
+    // Prevent empty tasks
+    if (title === "") {
+        alert("Please enter a task!");
+        return;
+    }
+
+    // Create task object
+    const newTask = {
+        id: Date.now(),
+        title: title,
+        priority: priority,
+        completed: false
+    };
+
+    tasks.push(newTask);
+saveTasks();
+renderTasks();
+
+    // Clear input
+    taskInput.value = "";
+}
+
+// Display tasks
+function renderTasks() {
+
+
+    taskList.innerHTML = "";
+
+    taskCount.textContent = `${tasks.length} Tasks`;
+
+    if (tasks.length === 0) {
+        taskList.appendChild(emptyMessage);
+        return;
+    }
+
+    tasks.forEach(task => {
+
+        const taskElement = document.createElement("div");
+        taskElement.className = "task-item";
+
+        // Task title
+        const title = document.createElement("span");
+        title.textContent = task.title;
+
+        if (task.completed) {
+            title.style.textDecoration = "line-through";
+            title.style.color = "#64748b";
+        }
+
+        // Checkbox
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = task.completed;
+
+        checkbox.addEventListener("change", () => {
+            task.completed = checkbox.checked;
+            saveTasks();
+            renderTasks();
+        });
+
+        // Priority
+        const priority = document.createElement("span");
+        priority.className = `priority ${task.priority}`;
+        priority.textContent = task.priority.toUpperCase();
+
+        // Delete button
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "✕";
+        deleteBtn.style.background = "transparent";
+        deleteBtn.style.color = "#f87171";
+        deleteBtn.style.padding = "5px";
+
+        deleteBtn.addEventListener("click", () => {
+            tasks = tasks.filter(t => t.id !== task.id);
+            saveTasks();
+            renderTasks();
+        });
+
+        taskElement.append(
+            checkbox,
+            title,
+            priority,
+            deleteBtn
+        );
+
+        taskList.appendChild(taskElement);
+
+    });
+}
+
+// Add button click event
+addTaskBtn.addEventListener("click", addTask);
+
+// Enter key support
+taskInput.addEventListener("keydown", (event) => {
+
+    if (event.key === "Enter") {
+        addTask();
+    }
+
+});
+
+// Save tasks in Chrome storage
+async function saveTasks() {
+    await chrome.storage.local.set({ tasks: tasks });
+}
+
+// Load saved tasks
+async function loadTasks() {
+    const data = await chrome.storage.local.get("tasks");
+
+    tasks = data.tasks || [];
+
+    renderTasks();
+}
+
+// Load tasks when popup opens
+loadTasks();

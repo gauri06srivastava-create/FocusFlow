@@ -72,6 +72,42 @@
 
         </div>
 
+<!-- Task Manager -->
+<section class="task-section">
+
+    <div class="task-header">
+        <h2>My Tasks</h2>
+        <span id="taskCount">0 Tasks</span>
+    </div>
+
+    <!-- Add Task Form -->
+    <div class="task-input-container">
+
+        <input
+            type="text"
+            id="taskInput"
+            placeholder="What do you need to do?"
+        >
+
+        <select id="taskPriority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+        </select>
+
+        <button id="addTaskBtn">Add</button>
+
+    </div>
+
+    <!-- Task List -->
+    <div id="taskList" class="task-list">
+
+        <p id="emptyMessage">No tasks yet. Add your first task!</p>
+
+    </div>
+
+</section>
+
     </div>
 
     <script src="popup.js"></script>

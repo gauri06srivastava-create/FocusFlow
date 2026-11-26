@@ -254,6 +254,30 @@ function renderTasks() {
         priority.textContent = task.priority.toUpperCase();
 
         // Delete button
+
+// Edit button
+const editBtn = document.createElement("button");
+editBtn.textContent = "Edit";
+editBtn.style.background = "#334155";
+editBtn.style.color = "white";
+editBtn.style.padding = "5px 8px";
+
+editBtn.addEventListener("click", () => {
+    const updatedTitle = prompt("Edit your task:", task.title);
+
+    if (updatedTitle === null) return;
+
+    if (updatedTitle.trim() === "") {
+        alert("Task cannot be empty!");
+        return;
+    }
+
+    task.title = updatedTitle.trim();
+
+    saveTasks();
+    renderTasks();
+});
+
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "✕";
         deleteBtn.style.background = "transparent";
@@ -267,11 +291,12 @@ function renderTasks() {
         });
 
         taskElement.append(
-            checkbox,
-            title,
-            priority,
-            deleteBtn
-        );
+    checkbox,
+    title,
+    priority,
+    editBtn,
+    deleteBtn
+);
 
         taskList.appendChild(taskElement);
 
